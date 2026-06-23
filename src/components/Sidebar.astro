@@ -1,0 +1,26 @@
+---
+// Overrides Starlight's default Sidebar: the top-level sidebar groups are
+// one per package (python-collect, python-mailable, ...). Only the group
+// containing the active page is rendered — the other packages' entries are
+// dropped entirely instead of just being collapsed.
+import MobileMenuFooter from "virtual:starlight/components/MobileMenuFooter";
+import SidebarPersister from "@astrojs/starlight/components/SidebarPersister.astro";
+import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
+
+function isActive(entry) {
+  if (entry.type === "link") return entry.isCurrent;
+  return entry.entries.some(isActive);
+}
+
+const { sidebar } = Astro.locals.starlightRoute;
+const activeGroups = sidebar.filter(isActive);
+const scopedSidebar = activeGroups.length > 0 ? activeGroups : sidebar;
+---
+
+<SidebarPersister>
+  <SidebarSublist sublist={scopedSidebar} />
+</SidebarPersister>
+
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>

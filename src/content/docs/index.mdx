@@ -1,0 +1,38 @@
+---
+title: bundelen/docs
+description: One place for all our package documentation
+template: splash # Remove or comment out this line to display the site sidebar on this page.
+hero:
+  tagline: One place for all our package documentation
+  image:
+    file: ../../assets/bundelen_logo.webp
+---
+
+import { Card, CardGrid, LinkButton } from "@astrojs/starlight/components";
+
+## Packages
+
+<div class="package-cards">
+  <CardGrid stagger>
+    <Card title="Python Mailable" icon="email">
+      An intuitive and fluent API for building richly formatted emails in Python
+      <LinkButton
+        href="/python-mailable/introduction/"
+        variant="secondary"
+        icon="right-arrow"
+      >
+        Get started
+      </LinkButton>
+    </Card>
+    <Card title="Python Collect" icon="list-format">
+      Convenient array and object utilities for Python
+      <LinkButton
+        href="/python-collect/introduction/"
+        variant="secondary"
+        icon="right-arrow"
+      >
+        Get started
+      </LinkButton>
+    </Card>
+  </CardGrid>
+</div>
